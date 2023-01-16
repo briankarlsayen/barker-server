@@ -1,25 +1,25 @@
 TODOS
-[x] auth crud
-  [x] login
-  [x] register
-[x] user crud
-  [x] dispay
-  [x] view
-  [x] update
-  [x] archive
-[ ] forgot password
-[ ] post crud
-  [ ] create
-  [ ] update
-  [ ] display
-  [ ] view
-  [ ] archive
-[ ] follow
-  [ ] add following
-  [ ] display followers
-[ ] realtime
-  [ ] post
-  [ ] comment
-  [ ] like
-  [ ] follow
-[ ] dashboard
+[x] auth crud\
+&ensp;[x] login\
+&ensp;[x] register\
+[x] user crud\
+&ensp;[x] dispay\
+&ensp;[x] view\
+&ensp;[x] update\
+&ensp;[x] archive\
+[ ] forgot password\
+[ ] post crud\
+&ensp;[ ] create\
+&ensp;[ ] update\
+&ensp;[ ] display\
+&ensp;[ ] view\
+&ensp;[ ] archive\
+[ ] follow\
+&ensp;[ ] add following\
+&ensp;[ ] display followers\
+[ ] realtime\
+&ensp;[ ] post\
+&ensp;[ ] comment\
+&ensp;[ ] like\
+&ensp;[ ] follow\
+[ ] dashboard\
