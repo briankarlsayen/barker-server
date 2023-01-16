@@ -1,12 +1,11 @@
-const User = require('../models/user.model');
+const User = require("../models/user.model");
 
 exports.register = async (req, res, next) => {
-  const {
-    fullName, email, password, birthDate, image, bio,
-  } = req.body;
+  const { fullName, email, password, birthDate, image, bio } = req.body;
   try {
     const emailExist = await User.findOne({ email, isDeleted: false }).exec();
-    if (emailExist) return res.status(422).json({ message: 'Email already exists' });
+    if (emailExist)
+      return res.status(422).json({ message: "Email already exists" });
     const user = await User.create({
       fullName,
       email,
@@ -14,10 +13,11 @@ exports.register = async (req, res, next) => {
       birthDate,
       image,
       bio,
-      role: 'client',
+      role: "client",
     });
-    if (!user) return res.status(422).json({ message: 'Unable to create user' });
-    return res.status(201).json({ message: 'Successfully created' });
+    if (!user)
+      return res.status(422).json({ message: "Unable to create user" });
+    return res.status(201).json({ message: "Successfully created" });
   } catch (error) {
     return next(error);
   }
@@ -30,13 +30,16 @@ exports.login = async (req, res, next) => {
       email: username,
       isDeleted: false,
     }).exec();
-    if (!user) return res.status(422).json({ message: 'Invalid username or password' });
-    if (!user.isActive) return res.status(422).json({ message: 'Your acount is not active' });
+    if (!user)
+      return res.status(422).json({ message: "Invalid username or password" });
+    if (!user.isActive)
+      return res.status(422).json({ message: "Your acount is not active" });
     const token = await user.getSignedJwtToken();
     const validPassword = await user.comparePassword(password);
-    if (!validPassword) return res.status(422).json({ message: 'Invalid username or password' });
+    if (!validPassword)
+      return res.status(422).json({ message: "Invalid username or password" });
 
-    return res.status(200).json({ token, message: 'Successfully logged in' });
+    return res.status(200).json({ token, message: "Successfully logged in" });
   } catch (error) {
     return next(error);
   }

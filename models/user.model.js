@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const { ObjectId } = mongoose.Schema.Types;
 
@@ -8,11 +8,11 @@ const userSchema = new mongoose.Schema(
   {
     fullName: {
       type: String,
-      required: [true, 'Please input full name.'],
+      required: [true, "Please input full name."],
     },
     email: {
       type: String,
-      required: [true, 'Please input email'],
+      required: [true, "Please input email"],
     },
     password: {
       type: String,
@@ -25,10 +25,10 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: {
-        values: ['admin', 'client'],
-        message: 'Invalid user role',
+        values: ["admin", "client"],
+        message: "Invalid user role",
       },
-      required: [true, 'Please input user role'],
+      required: [true, "Please input user role"],
     },
     image: {
       type: String,
@@ -54,7 +54,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-userSchema.pre('save', async function (next) {
+userSchema.pre("save", async function (next) {
   if (this.password) {
     const salt = 10;
     const hashedPassword = await bcrypt.hash(this.password, salt);
@@ -108,6 +108,6 @@ userSchema.methods.toJSON = function () {
   return obj;
 };
 
-const users = mongoose.model('users', userSchema);
+const users = mongoose.model("users", userSchema);
 
 module.exports = users;
