@@ -6,11 +6,12 @@ exports.register = async(req, res, next) => {
     const emailExist = await User.findOne({email, isDeleted: false}).exec();
     if(emailExist) return res.status(422).json({ message: 'Email already exists'});
     const user = await User.create({
-      fullName, email, password, birthDate, image, bio, role: 'client'
+      fullName, email, password, birthDate, image, bio, role: "client"
     })
     if(!user) return res.status(422).json({ message: 'Unable to create user'})
     res.status(201).json({ message: 'Successfully created'});
   } catch(error) {
+
     next(error)
   }
 }
