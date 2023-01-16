@@ -37,7 +37,7 @@ exports.login = async (req, res, next) => {
     const token = await user.getSignedJwtToken();
     const validPassword = await user.comparePassword(password);
     if (!validPassword)
-      return res.status(422).json({ message: "Invalid username or password" });
+      return res.status(422).json({ message: 'Invalid username or password' });
 
     res.status(200).json({ token, message: "Successfully logged in" });
   } catch (error) {
