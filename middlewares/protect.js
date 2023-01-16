@@ -27,13 +27,17 @@ exports.auth = async (req, res, next) => {
     const joinNewUrl = newUrl.join('/');
     if (publicApis.includes(joinNewUrl)) return next();
 
-    const token = req.headers['authorization'].replace('Bearer ', '');
+    const token = req.headers.authorization.replace('Bearer ', '');
     const data = jwt.verify(token, process.env.JWT_SECRET);
 
     const [user] = await User.aggregate([
       {
         $match: {
-          $and: [{ $expr: { $eq: ['$_id', Types.ObjectId(data.id)] } }, { isActive: true }, { isDeleted: false }],
+          $and: [
+            { $expr: { $eq: ['$_id', Types.ObjectId(data.id)] } },
+            { isActive: true },
+            { isDeleted: false },
+          ],
         },
       },
       {
@@ -68,12 +72,13 @@ exports.auth = async (req, res, next) => {
     if (!user) throw new Error();
 
     req.userInfo = user;
-    next();
+    return next();
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
       return res.status(403).json(error);
-    } else {
-      return res.status(401).json({ message: 'Not authorized to access this resource' });
     }
+    return res
+      .status(401)
+      .json({ message: 'Not authorized to access this resource' });
   }
 };

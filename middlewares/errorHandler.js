@@ -5,13 +5,13 @@ class ErrorResponse extends Error {
   }
 }
 
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res) => {
   let error = { ...err };
 
   error.message = err.message;
 
   if (err.code === 11000) {
-    const message = `Duplicate field value entered`;
+    const message = 'Duplicate field value entered';
     error = new ErrorResponse(message, 400);
   }
 
@@ -20,12 +20,12 @@ const errorHandler = (err, req, res, next) => {
     error = new ErrorResponse(message, 400);
   }
 
-  if (err.code === 'ERR_BAD_REQUEST' && error?.response?.data?.errors[0]?.code === 'PUSH_TOO_MANY_EXPERIENCE_IDS') {
-    console.log('push notif err', error?.response?.data?.errors[0]);
+  if (
+    err.code === 'ERR_BAD_REQUEST'
+    && error?.response?.data?.errors[0]?.code === 'PUSH_TOO_MANY_EXPERIENCE_IDS'
+  ) {
     error = new ErrorResponse(error.response.data.errors[0].message, 400);
   }
-
-  console.log(error.message);
 
   res.status(error.statusCode || 500).json({
     success: false,
