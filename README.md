@@ -1,4 +1,4 @@
-<h2>TODOS</h2>
+<h1>TODOS</h1>
 [x] auth crud\
 &ensp;[x] login\
 &ensp;[x] register\
