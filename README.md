@@ -1,25 +1,25 @@
 <h1>TODOS</h1>
-[x] auth crud\
-&ensp;[x] login\
-&ensp;[x] register\
-[x] user crud\
-&ensp;[x] dispay\
-&ensp;[x] view\
-&ensp;[x] update\
-&ensp;[x] archive\
-[ ] forgot password\
-[ ] post crud\
-&ensp;[ ] create\
-&ensp;[ ] update\
-&ensp;[ ] display\
-&ensp;[ ] view\
-&ensp;[ ] archive\
-[ ] follow\
-&ensp;[ ] add following\
-&ensp;[ ] display followers\
-[ ] realtime\
-&ensp;[ ] post\
-&ensp;[ ] comment\
-&ensp;[ ] like\
-&ensp;[ ] follow\
-[ ] dashboard\
+[x] auth crud </br>
+&ensp;[x] login</br>
+&ensp;[x] register</br>
+[x] user crud</br>
+&ensp;[x] dispay</br>
+&ensp;[x] view</br>
+&ensp;[x] update</br>
+&ensp;[x] archive</br>
+[ ] forgot password</br>
+[ ] post crud</br>
+&ensp;[ ] create</br>
+&ensp;[ ] update</br>
+&ensp;[ ] display</br>
+&ensp;[ ] view</br>
+&ensp;[ ] archive</br>
+[ ] follow</br>
+&ensp;[ ] add following</br>
+&ensp;[ ] display followers</br>
+[ ] realtime</br>
+&ensp;[ ] post</br>
+&ensp;[ ] comment</br>
+&ensp;[ ] like</br>
+&ensp;[ ] follow</br>
+[ ] dashboard</br>
