@@ -21,6 +21,9 @@
         "avoidEscape": true
       }
     ],
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "no-plusplus": "off",
+    "no-bitwise": "off",
+    "no-extend-native": "off"
   }
 }

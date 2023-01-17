@@ -7,7 +7,7 @@
 &ensp;[x] view</br>
 &ensp;[x] update</br>
 &ensp;[x] archive</br>
-[ ] seeder</br>
+[x] seeder</br>
 [ ] forgot password</br>
 [ ] post crud</br>
 &ensp;[ ] create</br>

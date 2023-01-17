@@ -4,7 +4,12 @@ const User = require("../models/user.model");
 
 exports.auth = async (req, res, next) => {
   try {
-    const publicApis = ["/auth/login", "/auth/register"];
+    const publicApis = [
+      "/auth/login",
+      "/auth/register",
+      "/auth/setpass/:id",
+      "/auth/forgotpassword",
+    ];
 
     // * convert url id to :id
     const urls = req.url.split("/");
