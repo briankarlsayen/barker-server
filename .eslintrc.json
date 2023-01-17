@@ -24,6 +24,7 @@
     "import/no-extraneous-dependencies": "off",
     "no-plusplus": "off",
     "no-bitwise": "off",
-    "no-extend-native": "off"
+    "no-extend-native": "off",
+    "no-await-in-loop": "off"
   }
 }
