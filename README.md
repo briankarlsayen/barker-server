@@ -7,14 +7,22 @@
 &ensp;[x] view</br>
 &ensp;[x] update</br>
 &ensp;[x] archive</br>
-[x] seeder</br>
+[x] seeder user</br>
 [x] forgot password</br>
-[ ] post crud</br>
+[x] post crud</br>
+&ensp;[x] create</br>
+&ensp;[x] update</br>
+&ensp;[x] display</br>
+&ensp;[x] view</br>
+&ensp;[x] archive</br>
+[x] seeder post</br>
+[ ] post comment</br>
 &ensp;[ ] create</br>
 &ensp;[ ] update</br>
 &ensp;[ ] display</br>
 &ensp;[ ] view</br>
 &ensp;[ ] archive</br>
+[ ] seeder comment</br>
 [ ] follow</br>
 &ensp;[ ] add following</br>
 &ensp;[ ] display followers</br>
