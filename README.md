@@ -8,7 +8,7 @@
 &ensp;[x] update</br>
 &ensp;[x] archive</br>
 [x] seeder</br>
-[ ] forgot password</br>
+[x] forgot password</br>
 [ ] post crud</br>
 &ensp;[ ] create</br>
 &ensp;[ ] update</br>
