@@ -8,7 +8,9 @@
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "seed": "node ./seeder",
+    "seed:dummy": "node ./seeder/fakeData.js"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +25,7 @@
     "nodemailer": "^6.9.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "eslint": "^8.32.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.6.0",
