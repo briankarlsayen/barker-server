@@ -17,7 +17,7 @@ const createRandomPost = async () => {
     promises.push({
       userId: await getUserId(),
       body: faker.lorem.paragraph(),
-      image: null,
+      image: faker.image.animals(),
     });
   }
   const posts = await Promise.all(promises);

@@ -1,4 +1,3 @@
-const { ObjectId } = require("mongodb");
 const { isValidObjectId } = require("mongoose");
 const Comment = require("../models/comment.model");
 
