@@ -9,8 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "seed": "node ./seeder",
-    "seed:dummy": "node ./seeder/dummyData.js"
+    "seed": "node ./seeder/prod",
+    "seed:dummy": "node ./seeder/dev"
   },
   "keywords": [],
   "author": "",

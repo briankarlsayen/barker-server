@@ -1,5 +1,5 @@
 const { faker } = require("@faker-js/faker");
-const User = require("../models/user.model");
+const User = require("../../models/user.model");
 
 const createRandomUser = () => {
   const randomNum = Math.floor(Math.random() * 2);

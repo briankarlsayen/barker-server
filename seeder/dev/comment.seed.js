@@ -1,7 +1,7 @@
 const { faker } = require("@faker-js/faker");
-const User = require("../models/user.model");
-const Post = require("../models/post.model");
-const Comment = require("../models/comment.model");
+const User = require("../../models/user.model");
+const Post = require("../../models/post.model");
+const Comment = require("../../models/comment.model");
 
 const getUserId = async () => {
   const userCount = await User.count().exec();
