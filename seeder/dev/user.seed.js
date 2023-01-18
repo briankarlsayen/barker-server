@@ -47,8 +47,8 @@ exports.createUsers = async () => {
       bio: "Madou Ou",
     },
   ];
-  userData.push(createRandomUser());
   try {
+    userData.push(...createRandomUser());
     const users = [];
     const newUsers = userData.map((user) => {
       return new Promise((resolve, reject) => {

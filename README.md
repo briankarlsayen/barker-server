@@ -21,6 +21,11 @@
 &ensp;[x] update</br>
 &ensp;[x] archive</br>
 [x] seeder comment</br>
+[x] tag crud</br>
+&ensp;[x] create</br>
+&ensp;[x] update</br>
+&ensp;[x] archive</br>
+[x] seeder tag</br>
 [ ] dashboard</br>
 <h4>CONT.</h4>
 [ ] follow</br>
