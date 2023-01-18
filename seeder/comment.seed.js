@@ -1,6 +1,7 @@
 const { faker } = require("@faker-js/faker");
 const User = require("../models/user.model");
 const Post = require("../models/post.model");
+const Comment = require("../models/comment.model");
 
 const getUserId = async () => {
   const userCount = await User.count().exec();
@@ -10,31 +11,39 @@ const getUserId = async () => {
   return _id;
 };
 
-const createRandomPost = async () => {
+const getPostId = async () => {
+  const userCount = await Post.count().exec();
+  const random = Math.floor(Math.random() * userCount);
+  const { _id } = await Post.findOne().skip(random).exec();
+
+  return _id;
+};
+
+const createRandomComment = async () => {
   const promises = [];
   const postsCount = 10;
   for (let i = 0; i < postsCount; i++) {
     promises.push({
       userId: await getUserId(),
+      postId: await getPostId(),
       body: faker.lorem.paragraph(),
-      image: null,
     });
   }
   const posts = await Promise.all(promises);
   return posts;
 };
 
-exports.createPosts = async () => {
-  const postData = [];
+exports.createComments = async () => {
+  const randData = [];
 
   try {
-    postData.push(await createRandomPost());
-    const posts = [];
-    const newPosts = postData.map((post) => {
+    randData.push(await createRandomComment());
+    const dataArr = [];
+    const newDatas = randData.map((comment) => {
       return new Promise((resolve, reject) => {
-        Post.create(post)
+        Comment.create(comment)
           .then((res) => {
-            posts.push(res);
+            dataArr.push(res);
             resolve(res);
           })
           .catch((err) => {
@@ -42,9 +51,9 @@ exports.createPosts = async () => {
           });
       });
     });
-    await Promise.all(newPosts);
-    return posts;
+    await Promise.all(newDatas);
+    return dataArr;
   } catch (err) {
-    console.log("Error in seeding posts");
+    console.log("Error in seeding comments");
   }
 };

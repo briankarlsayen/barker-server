@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 require("dotenv").config({ path: ".env" });
 const { createUsers } = require("./user.seed");
 const { createPosts } = require("./post.seed");
+const { createComments } = require("./comment.seed");
 
 const connectDB = async () => {
   mongoose.set("strictQuery", false);
@@ -35,10 +36,12 @@ const deleteCollections = async () => {
 
 const createSeedCollections = async () => {
   console.log("Seeding collections:");
-  const users = await createUsers();
+  await createUsers();
   console.log("--->>", "users");
-  const posts = await createPosts();
+  await createPosts();
   console.log("--->>", "posts");
+  await createComments();
+  console.log("--->>", "comments");
 
   mongoose.connection.close();
   console.log("Done seeding database");

@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "seed": "node ./seeder",
-    "seed:dummy": "node ./seeder/fakeData.js"
+    "seed:dummy": "node ./seeder/dummyData.js"
   },
   "keywords": [],
   "author": "",
