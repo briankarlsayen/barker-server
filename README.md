@@ -20,7 +20,7 @@
 &ensp;[x] create</br>
 &ensp;[x] update</br>
 &ensp;[x] archive</br>
-[ ] seeder comment</br>
+[x] seeder comment</br>
 [ ] dashboard</br>
 <h4>CONT.</h4>
 [ ] follow</br>
