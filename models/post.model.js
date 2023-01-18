@@ -20,6 +20,10 @@ const postSchema = new mongoose.Schema(
       type: [ObjectId],
       default: [],
     },
+    tags: {
+      type: [ObjectId],
+      default: [],
+    },
     isActive: {
       type: Boolean,
       default: true,

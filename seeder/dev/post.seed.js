@@ -1,6 +1,7 @@
 const { faker } = require("@faker-js/faker");
 const User = require("../../models/user.model");
 const Post = require("../../models/post.model");
+const Tag = require("../../models/tag.model");
 
 const getUserId = async () => {
   const userCount = await User.count().exec();
@@ -8,6 +9,26 @@ const getUserId = async () => {
   const { _id } = await User.findOne().skip(random).exec();
 
   return _id;
+};
+
+const getTagId = async () => {
+  const tagArr = [];
+  const maxTagCount = 5;
+  const randomNum = Math.floor(Math.random() * maxTagCount);
+
+  const count = await Tag.count().exec();
+  const randArr = [];
+  for (let i = 0; i < randomNum; i++) {
+    randArr.push(Math.floor(Math.random() * count));
+  }
+
+  let uniqueRand = [...new Set(randArr)]; // filter for unique tags
+  for (let j = 0; j < uniqueRand.length; j++) {
+    const { _id } = await Tag.findOne().skip(uniqueRand[j]).exec();
+    tagArr.push(_id);
+  }
+
+  return tagArr;
 };
 
 const createRandomPost = async () => {
@@ -18,6 +39,7 @@ const createRandomPost = async () => {
       userId: await getUserId(),
       body: faker.lorem.paragraph(),
       image: faker.image.animals(),
+      tags: await getTagId(),
     });
   }
   const posts = await Promise.all(promises);

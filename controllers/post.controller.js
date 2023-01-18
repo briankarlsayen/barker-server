@@ -2,10 +2,10 @@ const { isValidObjectId } = require("mongoose");
 const Post = require("../models/post.model");
 
 exports.createPost = async (req, res, next) => {
-  const { body, image } = req.body;
+  const { body, image, tags } = req.body;
   const { userInfo } = req;
   try {
-    const post = await Post.create({ userId: userInfo._id, body, image });
+    const post = await Post.create({ userId: userInfo._id, body, image, tags });
     if (!post)
       return res.status(422).json({ message: "Unable to create post" });
     res.status(201).json({ message: "Post successfully created" });
@@ -46,6 +46,29 @@ exports.displayPosts = async (req, res, next) => {
           as: "comments",
         },
       },
+      {
+        $lookup: {
+          from: "tags",
+          let: { tags: "$tags" },
+          pipeline: [
+            {
+              $match: {
+                $and: [
+                  { $expr: { $in: ["$_id", "$$tags"] } },
+                  { isDeleted: false },
+                  { isActive: true },
+                ],
+              },
+            },
+            {
+              $project: {
+                label: 1,
+              },
+            },
+          ],
+          as: "tags",
+        },
+      },
     ]).exec();
     res.status(200).send(posts);
   } catch (err) {
@@ -74,13 +97,14 @@ exports.viewPost = async (req, res, next) => {
 
 exports.updatePost = async (req, res, next) => {
   const { id } = req.params;
-  const { body, image } = req.body;
+  const { body, image, tags } = req.body;
   try {
     const post = await Post.findOneAndUpdate(
       { _id: id },
       {
         body,
         image,
+        tags,
       },
     );
     if (!post)
