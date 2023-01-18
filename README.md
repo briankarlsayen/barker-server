@@ -1,18 +1,21 @@
-###### Barker App Server
-
-## How to Install and Run
+<h1>Barker App Server</h1>
+This social media app is designed to make connecting with friends, family, and colleagues easier than ever. It allows users to post updates, share photos and videos, and create stories to share with followers. It also offers direct messaging and voice/video calls, so users can keep in touch with friends and family all over the world. Users can also explore and discover new content, follow their favorite celebrities, and join various discussion groups, making it a great way to stay connected and engaged with the world.
+<h2>How to Install and Run</h2>
 1. Setup your own .env following the .env.example format</br>
 2. Install packages using your favorite package manager</br> 
+
 ```
 npm install or yarn install
 ```
+
 3. Run the seeder 
+
 ```
 npm run seeder:dummy
 ```
 
 
-<h1>TODOS</h1>
+## TODOS
 [x] auth crud </br>
 &ensp;[x] login</br>
 &ensp;[x] register</br>
