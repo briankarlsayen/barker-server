@@ -22,6 +22,30 @@ exports.displayPosts = async (req, res, next) => {
           $and: [{ isDeleted: false }, { isActive: true }],
         },
       },
+      {
+        $lookup: {
+          from: "comments",
+          let: { postId: "$_id" },
+          pipeline: [
+            {
+              $match: {
+                $and: [
+                  { $expr: { $eq: ["$postId", "$$postId"] } },
+                  { isDeleted: false },
+                  { isActive: true },
+                ],
+              },
+            },
+            {
+              $project: {
+                body: 1,
+                likes: 1,
+              },
+            },
+          ],
+          as: "comments",
+        },
+      },
     ]).exec();
     res.status(200).send(posts);
   } catch (err) {

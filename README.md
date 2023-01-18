@@ -16,13 +16,13 @@
 &ensp;[x] view</br>
 &ensp;[x] archive</br>
 [x] seeder post</br>
-[ ] post comment</br>
-&ensp;[ ] create</br>
-&ensp;[ ] update</br>
-&ensp;[ ] display</br>
-&ensp;[ ] view</br>
-&ensp;[ ] archive</br>
+[x] comment crud</br>
+&ensp;[x] create</br>
+&ensp;[x] update</br>
+&ensp;[x] archive</br>
 [ ] seeder comment</br>
+[ ] dashboard</br>
+<h4>CONT.</h4>
 [ ] follow</br>
 &ensp;[ ] add following</br>
 &ensp;[ ] display followers</br>
@@ -31,4 +31,3 @@
 &ensp;[ ] comment</br>
 &ensp;[ ] like</br>
 &ensp;[ ] follow</br>
-[ ] dashboard</br>
