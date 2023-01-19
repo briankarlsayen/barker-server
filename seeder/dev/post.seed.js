@@ -11,7 +11,7 @@ const getUserId = async () => {
   return _id;
 };
 
-const getTagId = async () => {
+const getTagsId = async () => {
   const tagArr = [];
   const maxTagCount = 5;
   const randomNum = Math.floor(Math.random() * maxTagCount);
@@ -22,13 +22,25 @@ const getTagId = async () => {
     randArr.push(Math.floor(Math.random() * count));
   }
 
-  let uniqueRand = [...new Set(randArr)]; // filter for unique tags
+  const uniqueRand = [...new Set(randArr)]; // filter for unique tags
   for (let j = 0; j < uniqueRand.length; j++) {
     const { _id } = await Tag.findOne().skip(uniqueRand[j]).exec();
     tagArr.push(_id);
   }
 
   return tagArr;
+};
+
+const getLikesId = async () => {
+  const likesArr = [];
+  const maxLikesCount = 5;
+  const randomNum = Math.floor(Math.random() * maxLikesCount);
+
+  for (let j = 0; j < randomNum; j++) {
+    const id = await getUserId();
+    likesArr.push(id);
+  }
+  return [...new Set(likesArr)];
 };
 
 const createRandomPost = async () => {
@@ -39,7 +51,8 @@ const createRandomPost = async () => {
       userId: await getUserId(),
       body: faker.lorem.paragraph(),
       image: faker.image.animals(),
-      tags: await getTagId(),
+      tags: await getTagsId(),
+      likes: await getLikesId(),
     });
   }
   const posts = await Promise.all(promises);

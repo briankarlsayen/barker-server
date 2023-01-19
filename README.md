@@ -42,6 +42,8 @@ npm run seeder:dummy
 [x] seeder tag</br>
 [x] add tag on post
 [ ] dashboard</br>
+&ensp;[ ] display tags with top 5 likes</br>
+&ensp;[ ] display tags with top 5 comments</br>
 <h4>CONT.</h4>
 [ ] follow</br>
 &ensp;[ ] add following</br>

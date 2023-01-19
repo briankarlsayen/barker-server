@@ -5,6 +5,7 @@ module.exports = function (app) {
   const postRoute = require("./routes/post.router");
   const commentRoute = require("./routes/comment.router");
   const tagRoute = require("./routes/tag.router");
+  const dashboardRoute = require("./routes/dashboard.router");
 
   app.use(auth);
   app.use("/auth", authRoute);
@@ -12,4 +13,5 @@ module.exports = function (app) {
   app.use("/posts", postRoute);
   app.use("/comments", commentRoute);
   app.use("/tags", tagRoute);
+  app.use("/dashboard", dashboardRoute);
 };
