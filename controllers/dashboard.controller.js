@@ -4,6 +4,8 @@ const User = require("../models/user.model");
 const Comment = require("../models/comment.model");
 
 exports.displayInteractions = async (req, res, next) => {
+  const { limit } = req.query;
+  const limitCount = limit ? Number(limit) : await Tag.find().count();
   try {
     const tags = await Tag.aggregate([
       {
@@ -66,6 +68,74 @@ exports.displayInteractions = async (req, res, next) => {
         },
       },
       {
+        $lookup: {
+          from: "posts",
+          let: { tagId: "$_id" },
+          pipeline: [
+            {
+              $match: {
+                $and: [
+                  { $expr: { $in: ["$$tagId", "$tags"] } },
+                  { isDeleted: false },
+                  { isActive: true },
+                ],
+              },
+            },
+            {
+              $lookup: {
+                from: "comments",
+                let: { postId: "$_id" },
+                pipeline: [
+                  {
+                    $match: {
+                      $and: [
+                        { $expr: { $eq: ["$postId", "$$postId"] } },
+                        { isDeleted: false },
+                        { isActive: true },
+                      ],
+                    },
+                  },
+                ],
+                as: "comments",
+              },
+            },
+            {
+              $project: {
+                commentsCount: {
+                  $cond: {
+                    if: { $isArray: "$comments" },
+                    then: { $size: "$comments" },
+                    else: 0,
+                  },
+                },
+                likesCount: {
+                  $cond: {
+                    if: { $isArray: "$likes" },
+                    then: { $size: "$likes" },
+                    else: 0,
+                  },
+                },
+              },
+            },
+            {
+              $group: {
+                _id: 0,
+                commentsSum: { $sum: "$commentsCount" },
+                likesSum: { $sum: "$likesCount" },
+              },
+            },
+            {
+              $addFields: {
+                totalInteractions: {
+                  $sum: ["$commentsSum", "$likesSum"],
+                },
+              },
+            },
+          ],
+          as: "postInteractions",
+        },
+      },
+      {
         $project: {
           label: 1,
           createdAt: 1,
@@ -77,7 +147,21 @@ exports.displayInteractions = async (req, res, next) => {
               else: 0,
             },
           },
+          commentsCount: { $arrayElemAt: ["$postInteractions.commentsSum", 0] },
+          likesCount: { $arrayElemAt: ["$postInteractions.likesSum", 0] },
+          totalInteractions: {
+            $arrayElemAt: ["$postInteractions.totalInteractions", 0],
+          },
         },
+      },
+      {
+        $sort: {
+          totalInteractions: -1,
+          likesCount: -1,
+        },
+      },
+      {
+        $limit: limitCount,
       },
     ]).exec();
     res.status(200).json(tags);

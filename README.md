@@ -5,7 +5,7 @@ This social media app is designed to make connecting with friends, family, and c
 2. Install packages using your favorite package manager</br> 
 
 ```
-npm install or yarn install
+npm install
 ```
 
 3. Run the seeder 
@@ -14,6 +14,11 @@ npm install or yarn install
 npm run seeder:dummy
 ```
 
+4. Run the app server
+
+```
+npm run dev
+```
 
 ## TODOS
 [x] auth crud </br>
