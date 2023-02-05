@@ -37,9 +37,18 @@ exports.displayPosts = async (req, res, next) => {
               },
             },
             {
+              $lookup: {
+                from: "users",
+                localField: "userId",
+                foreignField: "_id",
+                as: "user",
+              },
+            },
+            {
               $project: {
                 body: 1,
                 likes: 1,
+                user: { $arrayElemAt: ["$user", 0] },
               },
             },
           ],
