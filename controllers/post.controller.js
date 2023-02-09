@@ -78,6 +78,14 @@ exports.displayPosts = async (req, res, next) => {
           as: "tags",
         },
       },
+      {
+        $lookup: {
+          from: "users",
+          localField: "userId",
+          foreignField: "_id",
+          as: "userData",
+        },
+      },
     ]).exec();
     res.status(200).send(posts);
   } catch (err) {
