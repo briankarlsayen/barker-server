@@ -15,6 +15,19 @@ exports.createPost = async (req, res, next) => {
 };
 
 exports.displayPosts = async (req, res, next) => {
+  const postPerPage = 5;
+  const { page } = req.query;
+  const emptyPipeline = { $addFields: {} };
+  const postLimit = page
+    ? {
+        $limit: postPerPage,
+      }
+    : emptyPipeline;
+  const postSkip = page
+    ? {
+        $skip: postPerPage * (page - 1),
+      }
+    : emptyPipeline;
   try {
     const posts = await Post.aggregate([
       {
@@ -86,6 +99,8 @@ exports.displayPosts = async (req, res, next) => {
           as: "userData",
         },
       },
+      postSkip,
+      postLimit,
     ]).exec();
     res.status(200).send(posts);
   } catch (err) {
