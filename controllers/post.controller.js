@@ -35,6 +35,7 @@ exports.displayPosts = async (req, res, next) => {
           $and: [{ isDeleted: false }, { isActive: true }],
         },
       },
+      { $sort: { createdAt: -1 } },
       {
         $lookup: {
           from: "comments",
@@ -61,6 +62,7 @@ exports.displayPosts = async (req, res, next) => {
               $project: {
                 body: 1,
                 likes: 1,
+                createdAt: 1,
                 user: { $arrayElemAt: ["$user", 0] },
               },
             },
