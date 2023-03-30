@@ -31,7 +31,11 @@ const { errorHandler } = require("./middlewares/errorHandler");
 //   }),
 // );
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  }),
+);
 app.use(express.json());
 
 connectDB();
