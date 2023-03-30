@@ -11,5 +11,31 @@
       "src": "/(.*)",
       "dest": "/server.js"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "./server.js"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/vercel_app_domain_name/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
   ]
 }
