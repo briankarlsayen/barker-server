@@ -8,10 +8,10 @@ module.exports = function (app) {
   const dashboardRoute = require("./routes/dashboard.router");
 
   app.use(auth);
-  app.use("/auth", authRoute);
-  app.use("/users", userRoute);
-  app.use("/posts", postRoute);
-  app.use("/comments", commentRoute);
-  app.use("/tags", tagRoute);
-  app.use("/dashboard", dashboardRoute);
+  app.use("/api/auth", authRoute);
+  app.use("/api/users", userRoute);
+  app.use("/api/posts", postRoute);
+  app.use("/api/comments", commentRoute);
+  app.use("/api/tags", tagRoute);
+  app.use("/api/dashboard", dashboardRoute);
 };
